@@ -8,3 +8,4 @@ bin/
 lib/
 test/
 .vscode/settings.json
+.vscode/c_cpp_properties.json
