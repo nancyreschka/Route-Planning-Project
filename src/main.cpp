@@ -27,6 +27,19 @@ static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
     return std::move(contents);
 }
 
+float checkRangeOfInput(float input)
+{
+    if(input < 0.0f)
+    {
+        input = 0.0f;
+    }
+    else if(input > 100.0f)
+    {
+        input = 100.0f;
+    }
+    return input;
+}
+
 int main(int argc, const char **argv)
 {    
     std::string osm_data_file = "";
@@ -50,14 +63,37 @@ int main(int argc, const char **argv)
             osm_data = std::move(*data);
     }
     
-    // TODO: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
-    // user input for these values using std::cin. Pass the user input to the
+    // get user input for these values using std::cin. Pass the user input to the
     // RoutePlanner object below.
+    float start_x = 0.0f;
+    float start_y = 0.0f;
+    float end_x = 0.0f;
+    float end_y = 0.0f;
+
+    std::cout << " Please enter the following values:\n";
+    std::cout << " (values should be in the Range of 0 to 100, otherwise they will be set to max or min:\n";
+    std::cout << " start x = ";
+    std::cin >> start_x;
+    std::cout << " start y = ";
+    std::cin >> start_y;
+    std::cout << " end x = ";
+    std::cin >> end_x;
+    std::cout << " end y = ";
+    std::cin >> end_y;
+    std::cout << " \n ";
+
+    std::cout << "Start x " << start_x << " y " << start_y << " End x " << end_x << " y " << end_y << "\n";
+
+    start_x = checkRangeOfInput(start_x);
+    start_y = checkRangeOfInput(start_y);
+    end_x = checkRangeOfInput(end_x);
+    end_y = checkRangeOfInput(end_y);
 
     // Build Model.
     RouteModel model{osm_data};
 
     // Perform search and render results.
+    // RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
     RoutePlanner route_planner{model, 10, 10, 90, 90};
     route_planner.AStarSearch();
     std::cout << "Distance of the found path is: " << route_planner.GetDistance() << "\n";
