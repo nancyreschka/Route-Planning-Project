@@ -3,9 +3,11 @@
 
 RouteModel::RouteModel(const std::vector<std::byte> &xml) : Model(xml) {
   int count = 0;
+
+  // create RouteModel Nodes
   for(Model::Node node : this->Nodes())
   {
-     m_nodes.push_back(Node(count, this, node));
+     m_Nodes.push_back(Node(count, this, node));
      count++;       
   }
   CreateNodeToRoadHashmap();

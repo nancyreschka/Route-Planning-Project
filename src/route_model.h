@@ -25,6 +25,7 @@ class RouteModel : public Model {
         std::vector<RouteModel::Node*> neighbors{};
         
         void FindNeighbors();
+        // calculate the euclidean distance from the current node to the node passed in
         float distance(Node other) const { 
           return std::sqrt(std::pow((x - other.x), 2) + std::pow((y - other.y), 2)); 
         }
@@ -44,14 +45,21 @@ class RouteModel : public Model {
 
     RouteModel(const std::vector<std::byte> &xml);
     auto &GetNodeToRoadMap(){ return node_to_road; }
-    auto &SNodes(){ return m_nodes;}
+    // returns all nodes from the Open Street Map data
+    auto &SNodes(){ return m_Nodes;}
     RouteModel::Node &FindClosestNode(float x, float y); 
     
   private:
     // Add private RouteModel variables and methods here.
-    std::vector<Node> m_nodes{};
+    // stores all of the nodes from the Open Street Map data
+    std::vector<Node> m_Nodes{};
+    // hash table of Node index values to a vector of Road pointers that those nodes belong to
     std::unordered_map<int, std::vector<const Model::Road*>> node_to_road;
-
+    /* for each road in Roads(), if it's not a Footway,
+    Loop over each node_idx in the way that the road belongs to: Ways()[road.way].nodes
+    add Node if not yet in note_to_road
+    otherwise add pointer to current road 
+     */
     void CreateNodeToRoadHashmap();    
 };
 
