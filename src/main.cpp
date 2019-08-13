@@ -82,21 +82,20 @@ int main(int argc, const char **argv)
     std::cin >> end_y;
     std::cout << " \n ";
 
-    std::cout << "Start x " << start_x << " y " << start_y << " End x " << end_x << " y " << end_y << "\n";
-
     start_x = checkRangeOfInput(start_x);
     start_y = checkRangeOfInput(start_y);
     end_x = checkRangeOfInput(end_x);
     end_y = checkRangeOfInput(end_y);
 
+    std::cout << "Start x " << start_x << " y " << start_y << " - End x " << end_x << " y " << end_y << "\n";
+
     // Build Model.
     RouteModel model{osm_data};
-
+    
     // Perform search and render results.
-    // RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
-    RoutePlanner route_planner{model, 10, 10, 90, 90};
+    RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
     route_planner.AStarSearch();
-    std::cout << "Distance of the found path is: " << route_planner.GetDistance() << "\n";
+    std::cout << "Distance of the found path is: " << route_planner.GetDistance() << "m \n";
     Render render{model};
 
     auto display = io2d::output_surface{400, 400, io2d::format::argb32, io2d::scaling::none, io2d::refresh_style::fixed, 30};

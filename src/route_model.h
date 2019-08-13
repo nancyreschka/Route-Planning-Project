@@ -23,7 +23,7 @@ class RouteModel : public Model {
         bool visited = false;
         // node's neighbors
         std::vector<RouteModel::Node*> neighbors{};
-        
+        // find the closest neighbor from each road that the current node belongs to
         void FindNeighbors();
         // calculate the euclidean distance from the current node to the node passed in
         float distance(Node other) const { 
@@ -36,7 +36,8 @@ class RouteModel : public Model {
       // Add private Node variables and methods here.
       int index;
       RouteModel* parent_model = nullptr;
-      
+      // return a pointer to the closest unvisited node from a vector of node indices,
+      // where the distance is measured to the current node
       RouteModel::Node * FindNeighbor (std::vector<int> node_indices);      
     };
     
@@ -44,9 +45,13 @@ class RouteModel : public Model {
     std::vector<Node> path; // This variable will eventually store the path that is found by the A* search.
 
     RouteModel(const std::vector<std::byte> &xml);
+    // get Node index values to the vector of Road pointers that those nodes belong to
     auto &GetNodeToRoadMap(){ return node_to_road; }
     // returns all nodes from the Open Street Map data
     auto &SNodes(){ return m_Nodes;}
+    // find the nodes in the RouteModel that are closest to
+    // the starting and ending coordinates given by the user
+    // that is not a footway
     RouteModel::Node &FindClosestNode(float x, float y); 
     
   private:
