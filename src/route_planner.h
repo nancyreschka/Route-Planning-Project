@@ -24,9 +24,9 @@ class RoutePlanner {
     // reference to the model that A* search will be performed on
     RouteModel &m_Model;
     // node in the model which is closest to our starting point
-    RouteModel::Node * start_node;
+    RouteModel::Node* start_node;
     // node in the model which is closest to our ending point
-    RouteModel::Node * end_node;
+    RouteModel::Node* end_node;
     // total distance for the route that A* search finds from start_node to end_node
     float distance;
     // list of open nodes
@@ -39,12 +39,12 @@ class RoutePlanner {
     // calculates h-value for the given node
     // h-value will be computed as the euclidean distance from the node to the end node
     float CalculateHValue(const RouteModel::Node *node);
-    // ort the list of open nodes in the A* search, return the node with the lowest f-value, 
+    // sort the list of open nodes in the A* search, return the node with the lowest f-value, 
     // and remove the node from the list of open nodes
     RouteModel::Node *NextNode();
     // take each neighbor of the current node in the A* search, set the neighbor's g-value, 
     // h-value, and parent, and add the neighbor to the open list.
-    void AddNeighbors(RouteModel::Node *current_node);
+    void AddNeighbors(RouteModel::Node *current_node);    
 };
 
 #endif

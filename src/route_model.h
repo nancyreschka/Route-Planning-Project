@@ -30,7 +30,7 @@ class RouteModel : public Model {
           return std::sqrt(std::pow((x - other.x), 2) + std::pow((y - other.y), 2)); 
         }
         Node(){}
-        Node(int idx, RouteModel * search_model, Model::Node node) : Model::Node(node), parent_model(search_model), index(idx) {}
+        Node(int idx, RouteModel* search_model, Model::Node node) : Model::Node(node), parent_model(search_model), index(idx) {}
                       
       private:
       // Add private Node variables and methods here.
@@ -38,7 +38,7 @@ class RouteModel : public Model {
       RouteModel* parent_model = nullptr;
       // return a pointer to the closest unvisited node from a vector of node indices,
       // where the distance is measured to the current node
-      RouteModel::Node * FindNeighbor (std::vector<int> node_indices);      
+      RouteModel::Node *FindNeighbor (std::vector<int> node_indices);      
     };
     
     // Add public RouteModel variables and methods here.

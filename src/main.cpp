@@ -27,19 +27,6 @@ static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
     return std::move(contents);
 }
 
-float checkRangeOfInput(float input)
-{
-    if(input < 0.0f)
-    {
-        input = 0.0f;
-    }
-    else if(input > 100.0f)
-    {
-        input = 100.0f;
-    }
-    return input;
-}
-
 int main(int argc, const char **argv)
 {    
     std::string osm_data_file = "";
@@ -70,22 +57,46 @@ int main(int argc, const char **argv)
     float end_x = 0.0f;
     float end_y = 0.0f;
 
+    // get user input for the start and end node
     std::cout << " Please enter the following values:\n";
     std::cout << " (values should be in the Range of 0 to 100, otherwise they will be set to max or min:\n";
     std::cout << " start x = ";
     std::cin >> start_x;
+    while (!std::cin || start_x < 0 || start_x > 100)
+    {
+        std::cout << "Invalid value. Enter a start x form 0 to 100: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin >> start_x;
+    }
     std::cout << " start y = ";
     std::cin >> start_y;
+    while (!std::cin || start_y < 0 || start_y > 100)
+    {
+        std::cout << "Invalid value. Enter a start y form 0 to 100: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin >> start_y;
+    }
     std::cout << " end x = ";
     std::cin >> end_x;
+    while (!std::cin || end_x < 0 || end_x > 100)
+    {
+        std::cout << "Invalid value. Enter a end x form 0 to 100: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin >> end_x;
+    }
     std::cout << " end y = ";
     std::cin >> end_y;
+    while (!std::cin || end_y < 0 || end_y > 100)
+    {
+        std::cout << "Invalid value. Enter a end y form 0 to 100: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin >> end_y;
+    }
     std::cout << " \n ";
-
-    start_x = checkRangeOfInput(start_x);
-    start_y = checkRangeOfInput(start_y);
-    end_x = checkRangeOfInput(end_x);
-    end_y = checkRangeOfInput(end_y);
 
     std::cout << "Start x " << start_x << " y " << start_y << " - End x " << end_x << " y " << end_y << "\n";
 
