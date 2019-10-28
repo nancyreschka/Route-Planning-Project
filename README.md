@@ -1,16 +1,16 @@
-# Route Planning Project Starter Code
+# Route Planning Project
 
-This is the starter code for the Route Planning project. Instructions for each exercise can be found in the `instructions` directory, and unit tests for some exercises in the `test` directory.
+This is the code for the Route Planning project in my Udacity C++ Nanodegree. Instructions for each exercise can be found in the `instructions` directory, and unit tests for some exercises in the `test` directory.
 
 ## Cloning
 
 When cloning this project, be sure to use the `--recurse-submodules` flag. Using HTTPS:
 ```
-git clone https://github.com/udacity/CppND-Route-Planning-Project.git --recurse-submodules
+git clone https://github.com/nancyreschka/Route-Planning-Project --recurse-submodules
 ```
 or with SSH:
 ```
-git clone git@github.com:udacity/CppND-Route-Planning-Project.git --recurse-submodules
+git clone git@github.com:nancyreschka/Route-Planning-Project --recurse-submodules
 ```
 
 ## Compiling and Running
